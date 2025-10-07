@@ -20,3 +20,5 @@
 - Navbar should upadate as soon as user logs in
 - Navbar should update as soon as user logs in
 - Rafactor our code to add constants file + create a comonents folder
+- you should not be access other router without login
+- If token is not persent ,redirect to login page
