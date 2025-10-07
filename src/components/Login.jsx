@@ -10,6 +10,7 @@ const Login = () => {
     const navigate=useNavigate();
   const [email, setemailId] = useState("dikeshchouhan@gmail.com");
   const [password, setPassword] = useState("dikesh@2002");
+  const [error,setError]=useState("")
 
   const handleLogin =async()=>{
     try{
@@ -22,7 +23,8 @@ const Login = () => {
         navigate("/")
      
     }catch(err){
-        console.log(err)
+      setError(err?.response?.data ||"Something went wrong")
+        
     }
   }
   return (
@@ -52,6 +54,7 @@ const Login = () => {
               />
             </fieldset>
           </div>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center m-2">
             <button className="btn btn-primary"
             onClick={handleLogin}
