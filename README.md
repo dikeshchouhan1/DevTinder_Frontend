@@ -4,4 +4,19 @@
 - Remove unecessary code and create a Hello app
 - Install daisy UI
 - Add Navbar componet to App.jsx
-
+- Create a Navbar.jsx separate Component file
+- Install react router dom
+- Create BrowserRouter > Routes > Route
+- Create an Outlet in your Body Componets
+- Create a footer
+-  Create s Login Page 
+- Install axios
+- CORS - install cors in backend => add middleware to with configuration : orgin, credential:true
+- Whenever you's making API call pass {withCredentials:true}  
+- install redux toolkit
+- configurestore => Provider => createslice => add reducer to store
+- Add redux devtool in chrome
+- login and see if your data to coming properly in the store
+- Navbar should upadate as soon as user logs in
+- Navbar should update as soon as user logs in
+- Rafactor our code to add constants file + create a comonents folder
