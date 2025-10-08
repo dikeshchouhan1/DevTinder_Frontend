@@ -26,3 +26,5 @@
 - profile feature
 - get the feed and add the feed in store
 - bulid the user card on feed
+- Edit profile feature
+- Show Tost Message on save of profle
