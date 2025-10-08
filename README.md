@@ -24,3 +24,5 @@
 - If token is not persent ,redirect to login page
 - logout
 - profile feature
+- get the feed and add the feed in store
+- bulid the user card on feed
