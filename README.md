@@ -28,3 +28,4 @@
 - bulid the user card on feed
 - Edit profile feature
 - Show Tost Message on save of profle
+- See all my connection
