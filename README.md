@@ -34,3 +34,35 @@
 - Send /Igonre the user card from the feed
 - Signup New user
 - E2E testing
+
+
+
+
+# Deployment
+
+  - Signup on Aws
+  - Launch instance
+  - chmod 400 <secret>.pen
+  - ssh -i "Devtinder_secret.pem" ubuntu@ec2-3-131-94-196.us-east-2.compute.amazonaws.com
+  - Install Node version v22.12.0
+  - git colne
+  - Frontend
+    - npm install ->dependencies install
+    - npm run bulid 
+    - sudo apt update
+    - sudo apt install nginx
+    - sudo systemctl start nginx
+    - sudo systemctl enable nginx
+    - sudo code form dist(bulid files) to /var/www/html
+    - sudo scp -r dist/* /var/www/html/
+    - Enable port :80 of your instance
+
+   - Backend
+    - allowed ec2 instance publice Ip on mongoDB server
+    - npm install pn2 -g
+    - pm2 start npm --name "Devtinder" -- start
+    - pm2 logs
+    - pm2 list,pm2 flush<name>,pm2 stop <name>,pm2 delete <name>
+    - config nginx - /etc/nginx/sites-available/default
+    - restart nginx -sudo systemctl request nginx
+    - modify the BASEURL in frontend project to "/api"
