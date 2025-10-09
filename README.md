@@ -31,3 +31,4 @@
 - New page -See all my connections
 - New page -See all my connection Requests
 - Feature - Accept/Reject Connection Request
+- Send /Igonre the user card from the feed
