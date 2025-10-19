@@ -1,6 +1,6 @@
 // src/utils/constants.js
+import dotenv from 'dotenv';
+dotenv.config();
+export const BASE_URL =process.env.BASE_URL 
 
-export const BASE_URL =
-  import.meta.env.MODE === "production"
-    ? "/api"
-    : "http://localhost:9000";
+      
