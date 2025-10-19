@@ -9,6 +9,7 @@ import Profile from "./components/Profile"
 import Connections from "./components/Connections"
 import Request from "./components/Request"
 import Chat from "./components/Chat"
+import AiChat from "./components/AiChat"
 function App() {
 
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/" element={<Feed/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/profile" element={<Profile/>}/>
+      <Route path="/aichat" element={<AiChat/>}/>
       <Route path="/connections" element={<Connections/>}/>
       <Route path="/requests" element={<Request/>}/>
       <Route path="/chat/:targetUserId" element={<Chat/>}/>

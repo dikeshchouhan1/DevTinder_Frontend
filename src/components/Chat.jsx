@@ -10,40 +10,34 @@ const Chat = () => {
   const user = useSelector((state) => state.user);
   const userId = user?._id;
 
-  // 🔹 Store socket reference
   const socketRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     if (!userId) return;
 
-    // ✅ Create socket only once
     const socket = createSocketConnection();
     socketRef.current = socket;
 
-    // Join chat room
     socket.emit("Join Chat", {
       firstName: user.firstName,
       userId,
       targetUserId,
     });
 
-    // Listen for incoming messages
     socket.on("receiveMessage", ({ firstName, text }) => {
-      
-      setMessages((message) => [...message, { firstName, text }]);
+      setMessages((message) => [...messages, { firstName, text }]);
     });
 
-    // Cleanup on unmount
-    return () => {
-      socket.disconnect();
-      
-    };
+    return () => socket.disconnect();
   }, [userId, targetUserId]);
 
-  // ✅ Send message using same socket
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   const sendMessage = () => {
-    if (!newMessage.trim()) return;
-    if (!socketRef.current) return;
+    if (!newMessage.trim() || !socketRef.current) return;
 
     socketRef.current.emit("sendMessage", {
       firstName: user.firstName,
@@ -52,30 +46,28 @@ const Chat = () => {
       text: newMessage,
     });
 
-    // Add message to UI instantly
-
+    setMessages((message) => [...messages, { firstName: user.firstName, text: newMessage }]);
     setNewMessage("");
   };
 
   return (
-    <div className="max-w-2xl mx-auto my-8 flex flex-col h-[80vh] bg-[#121212] border border-gray-700 rounded-2xl shadow-lg">
+    <div className="flex flex-col max-w-md w-full mx-auto my-30 h-[70vh] bg-gray-900 border border-gray-700 rounded-2xl shadow-lg overflow-hidden">
+      
       {/* Header */}
-      <div className="p-4 border-b border-gray-700 text-lg font-semibold text-gray-200 flex justify-between items-center bg-[#1e1e1e] rounded-t-2xl">
+      <div className="flex justify-between items-center bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2 text-white font-semibold text-md sm:text-lg">
         <span>💬 Chat with {targetUserId || "User"}</span>
-        <span className="text-sm text-green-400">● Online</span>
+        <span className="text-green-400 text-sm">● Online</span>
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#181818] scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
-        {messages.map((msg, index) => (
+      <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-800 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-700">
+        {messages.map((msg, idx) => (
           <div
-            key={index}
-            className={`flex ${
-              msg.firstName === user.firstName ? "justify-end" : "justify-start"
-            }`}
+            key={idx}
+            className={`flex ${msg.firstName === user.firstName ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`px-4 py-2 rounded-2xl max-w-[75%] break-words shadow ${
+              className={`px-3 py-2 rounded-2xl max-w-[70%] break-words shadow ${
                 msg.firstName === user.firstName
                   ? "bg-blue-600 text-white rounded-br-none"
                   : "bg-gray-700 text-white rounded-bl-none"
@@ -85,21 +77,22 @@ const Chat = () => {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input Area */}
-      <div className="p-4 border-t border-gray-700 bg-[#1e1e1e] flex items-center gap-3 rounded-b-2xl">
+      <div className="flex items-center gap-2 p-3 bg-gray-800 border-t border-gray-700">
         <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder="Type a message..."
-          className="flex-1 bg-[#2b2b2b] text-white placeholder-gray-400 border border-gray-600 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 bg-gray-700 text-white placeholder-gray-400 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
         />
         <button
           onClick={sendMessage}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-full transition"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-full text-sm transition transform hover:scale-105"
         >
           Send
         </button>
