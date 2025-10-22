@@ -1,3 +1,6 @@
+# --------------------------------------------------
+# 📁 GENERAL
+# --------------------------------------------------
 # Logs
 logs
 *.log
@@ -7,19 +10,114 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-.env
+# Dependency directories
+node_modules/
 
-# Editor directories and files
+# Build output
+dist/
+dist-ssr/
+build/
+
+# Local environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+*.local
+.DS_Store
+Thumbs.db
+
+# --------------------------------------------------
+# ⚛️ FRONTEND (Vite + React)
+# --------------------------------------------------
+# Vite cache
+.vite/
+vite.config.timestamp-*
+vite.config.ts.timestamp-*
+
+# Coverage reports
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# --------------------------------------------------
+# 🖥️ BACKEND (Node.js + Express)
+# --------------------------------------------------
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Uploaded files (optional)
+uploads/
+public/uploads/
+
+# Process files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs & debug
+debug.log
+npm-debug.log*
+yarn-debug.log*
+pm2.log
+
+# --------------------------------------------------
+# 🧠 IDE / EDITOR SETTINGS
+# --------------------------------------------------
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.iml
+
+# --------------------------------------------------
+# 🧪 TEST / CI
+# --------------------------------------------------
+coverage/
+.nyc_output/
+jest-stare/
+test-output/
+
+# --------------------------------------------------
+# 📦 PACKAGE MANAGERS
+# --------------------------------------------------
+# Lock files (optional — include one if you prefer consistency)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# --------------------------------------------------
+# 🐳 DOCKER (optional)
+# --------------------------------------------------
+docker-compose.override.yml
+.docker/
+*.tar
+
+# --------------------------------------------------
+# 🔒 SECURITY
+# --------------------------------------------------
+# Private keys or secrets
+*.pem
+*.key
+*.crt
+*.p12
+*.csr
+
+# --------------------------------------------------
+# 🧩 MISC
+# --------------------------------------------------
+# macOS and Windows system files
+ehthumbs.db
+Icon?
+Desktop.ini

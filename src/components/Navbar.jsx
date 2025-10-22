@@ -12,13 +12,20 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLogout = async () => {
-    try {
-      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+ const handleLogout = async () => {
+  try {
+    const res = await axios.post(`${BASE_URL}/logout`, {}, { withCredentials: true });
+    if (res.status === 200) {
       dispatch(removeUser());
       navigate("/login");
-    } catch (err) {}
-  };
+    } else {
+      console.error("Logout failed:", res);
+    }
+  } catch (err) {
+    console.error("Logout error:", err);
+  }
+};
+
 
   return (
     <nav className="w-full bg-gradient-to-br from-indigo-700 via-purple-600 to-pink-400 shadow-lg backdrop-blur-md fixed top-0 left-0 z-30 transition-all">
